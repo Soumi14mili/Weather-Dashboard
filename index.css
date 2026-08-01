@@ -1,0 +1,379 @@
+@import "tailwindcss";
+
+/* ========================================
+   WeatherPulse Design System
+   Tailwind CSS v4 with @theme tokens
+   ======================================== */
+
+@theme {
+  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --spacing-18: 4.5rem;
+  --spacing-88: 22rem;
+  --spacing-128: 32rem;
+
+  /* Custom Colors */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  --color-accent-400: #a78bfa;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+
+  --color-warm-400: #fb923c;
+  --color-warm-500: #f97316;
+
+  --color-aqi-good: #22c55e;
+  --color-aqi-moderate: #eab308;
+  --color-aqi-unhealthy-sg: #f97316;
+  --color-aqi-unhealthy: #ef4444;
+  --color-aqi-very-unhealthy: #a855f7;
+  --color-aqi-hazardous: #7f1d1d;
+
+  --color-surface-light: #f8fafc;
+  --color-surface-dark: #0f172a;
+
+  /* Custom Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-spin-slow: spin 8s linear infinite;
+  --animate-bounce-gentle: bounce-gentle 2s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.5s ease-out;
+  --animate-gradient: gradient-shift 8s ease infinite;
+}
+
+/* ========================================
+   Keyframe Animations
+   ======================================== */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes rotate-compass {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background: var(--color-surface-light);
+  color: #1e293b;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body,
+body.dark {
+  background: var(--color-surface-dark);
+  color: #e2e8f0;
+}
+
+/* ========================================
+   Glassmorphism Utilities
+   ======================================== */
+
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.dark .glass-card {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.dark .glass-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass-nav {
+  background: rgba(15, 23, 42, 0.8);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+/* ========================================
+   Gradient Backgrounds
+   ======================================== */
+
+.bg-gradient-day {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-gradient-night {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+.bg-gradient-weather {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #7c3aed 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.bg-gradient-warm {
+  background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+}
+
+.bg-gradient-cool {
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+}
+
+.bg-gradient-aurora {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 25%, #312e81 50%, #4c1d95 75%, #1e1b4b 100%);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.bg-main-gradient {
+  background: linear-gradient(180deg, #dbeafe 0%, #ede9fe 50%, #fce7f3 100%);
+}
+
+.dark .bg-main-gradient {
+  background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+}
+
+/* ========================================
+   Text Gradients
+   ======================================== */
+
+.text-gradient {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-warm {
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================
+   Scrollbar Styling
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+/* ========================================
+   Skeleton Loading
+   ======================================== */
+
+.skeleton {
+  background: linear-gradient(90deg, 
+    rgba(226, 232, 240, 0.6) 25%, 
+    rgba(241, 245, 249, 0.8) 50%, 
+    rgba(226, 232, 240, 0.6) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+  border-radius: 0.5rem;
+}
+
+.dark .skeleton {
+  background: linear-gradient(90deg, 
+    rgba(51, 65, 85, 0.6) 25%, 
+    rgba(71, 85, 105, 0.8) 50%, 
+    rgba(51, 65, 85, 0.6) 75%
+  );
+  background-size: 200% 100%;
+}
+
+/* ========================================
+   AQI Color Scale
+   ======================================== */
+
+.aqi-good { color: #22c55e; }
+.aqi-moderate { color: #eab308; }
+.aqi-unhealthy-sg { color: #f97316; }
+.aqi-unhealthy { color: #ef4444; }
+.aqi-very-unhealthy { color: #a855f7; }
+.aqi-hazardous { color: #7f1d1d; }
+
+.aqi-bg-good { background-color: #22c55e; }
+.aqi-bg-moderate { background-color: #eab308; }
+.aqi-bg-unhealthy-sg { background-color: #f97316; }
+.aqi-bg-unhealthy { background-color: #ef4444; }
+.aqi-bg-very-unhealthy { background-color: #a855f7; }
+.aqi-bg-hazardous { background-color: #7f1d1d; }
+
+/* ========================================
+   Horizontal Scroll Container
+   ======================================== */
+
+.scroll-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.scroll-container > * {
+  scroll-snap-align: start;
+}
+
+/* ========================================
+   Map Styles
+   ======================================== */
+
+.leaflet-container {
+  border-radius: 1rem;
+  z-index: 1;
+}
+
+.pulse-marker {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 3px solid white;
+  box-shadow: 0 0 0 rgba(59, 130, 246, 0.4);
+  animation: pulse-glow 2s infinite;
+}
+
+/* ========================================
+   Responsive Utilities
+   ======================================== */
+
+.widget-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .widget-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Toast Custom Styles
+   ======================================== */
+
+.toast-custom {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+.dark .toast-custom {
+  background: rgba(30, 41, 59, 0.9) !important;
+  border: 1px solid rgba(148, 163, 184, 0.15) !important;
+  color: #e2e8f0 !important;
+}
+
+/* ========================================
+   Page Transition
+   ======================================== */
+
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
