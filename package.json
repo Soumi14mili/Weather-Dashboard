@@ -21,7 +21,7 @@
     "react-hot-toast": "^2.5.2",
     "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.6.2",
-    "recharts": "^2.15.3"
+    "recharts": "^3.0.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.11",
@@ -31,5 +31,8 @@
     "tailwindcss": "^4.1.11",
     "vite": "^6.3.5",
     "vite-plugin-pwa": "^0.21.1"
+  },
+  "overrides": {
+    "glob": "^11.0.0"
   }
 }
